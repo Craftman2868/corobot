@@ -8,6 +8,90 @@ with open("src/config.json") as cfgFile:
 
 departements = config["departements"]
 
+def getFrInfo():
+    url = 'https://coronavirusapi-france.now.sh/FranceLiveGlobalData'
+    resp = urllib.request.urlopen(url)
+    originalData = json.loads(resp.read())["FranceGlobalLiveData"][0]
+
+    # data = {
+    #     "Nom": config["null"],
+    #     "Date": config["null"],
+    #     "Hospitalisés": config["null"],
+    #     "EnReanimation": config["null"],
+    #     "DécèsEhpad": config["null"],
+    #     "CasEhpad": config["null"],
+    #     "CasConfirmés": config["null"],
+    #     "CasConfirmésEhpad": config["null"],
+    #     "CasPossiblesEhpad": config["null"],
+    #     "Décès": config["null"],
+    #     "Gueris": config["null"],
+    #     "Source": config["null"]
+    # }
+
+    data = {}
+
+    try:
+        data["nom"] = originalData["nom"]
+    except KeyError:
+        data["nom"] = config["null"]
+
+    try:
+        data["date"] = originalData["date"]
+    except KeyError:
+        data["date"] = config["null"]
+
+    try:
+        data["hospitalises"] = originalData["hospitalises"]
+    except KeyError:
+        data["hospitalises"] = config["null"]
+
+    try:
+        data["reanimation"] = originalData["reanimation"]
+    except KeyError:
+        data["reanimation"] = config["null"]
+
+    try:
+        data["decesEhpad"] = originalData["decesEhpad"]
+    except KeyError:
+        data["decesEhpad"] = config["null"]
+
+    try:
+        data["casEhpad"] = originalData["casEhpad"]
+    except KeyError:
+        data["casEhpad"] = config["null"]
+
+    try:
+        data["casConfirmes"] = originalData["casConfirmes"]
+    except KeyError:
+        data["casConfirmes"] = config["null"]
+
+    try:
+        data["casConfirmesEhpad"] = originalData["casConfirmesEhpad"]
+    except KeyError:
+        data["casConfirmesEhpad"] = config["null"]
+
+    try:
+        data["casPossiblesEhpad"] = originalData["casPossiblesEhpad"]
+    except KeyError:
+        data["casPossiblesEhpad"] = config["null"]
+
+    try:
+        data["deces"] = originalData["deces"]
+    except KeyError:
+        data["deces"] = config["null"]
+
+    try:
+        data["gueris"] = originalData["gueris"]
+    except KeyError:
+        data["gueris"] = config["null"]
+
+    try:
+        data["source"] = originalData["source"]["nom"]
+    except KeyError:
+        data["source"] = config["null"]
+
+    return data
+
 def getDepInfo(departement, date : str):
     if departement in departements.keys():
         departement = departements[departement]

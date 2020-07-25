@@ -10,6 +10,8 @@ with open("token.txt", "r") as file:
 
 @client.event
 async def on_ready():
+    activity = discord.Activity(name="$help !", type=discord.ActivityType.watching)
+    await client.change_presence(status=discord.Status.online, activity=activity)
     print('Connection en tant que '+client.user.name)
 
 @client.event
@@ -20,10 +22,11 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content.startswith(config["prefix"]):
+    msg = message.content.lower()
+    if msg.startswith(config["prefix"]):
         for c in commands:
-            if message.content.startswith(config["prefix"]+c):
-                args = message.content.replace(config["prefix"]+c, "")
+            if msg.startswith(config["prefix"]+c):
+                args = msg.replace(config["prefix"]+c, "")
                 if args != "":
                     args = list(args)
                     del args[0]
