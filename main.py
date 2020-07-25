@@ -3,10 +3,10 @@ from src.commands import commands
 
 import discord
 
+client = discord.Client()
+
 with open("token.txt", "r") as file:
     token = file.read()
-
-client = discord.Client()
 
 @client.event
 async def on_ready():
@@ -25,7 +25,9 @@ async def on_message(message):
             if message.content.startswith(config["prefix"]+c):
                 args = message.content.replace(config["prefix"]+c, "")
                 if args != "":
+                    args = list(args)
                     del args[0]
+                    args = "".join(args)
                 result = commands[c](args)
                 for action in result:
                     actionType = action[0]
@@ -38,7 +40,7 @@ async def on_message(message):
                     if actionType == "embed":
                         embed = discord.Embed(title=actionArgs[1], description=actionArgs[2])
                         embed.set_author(name=actionArgs[0])
-                        embed.set_footer(name=actionArgs[3])
-                        await message.channel.send(actionArgs, embed=embed)
+                        embed.set_footer(text=actionArgs[3])
+                        await message.channel.send(embed=embed)
 
 client.run(token)

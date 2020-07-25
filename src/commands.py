@@ -8,14 +8,13 @@ def depInfo(args : str):
     except IndexError:
         return [["message", ":x: Argument manquants"], ["react", "❌"]]
 
-    result = getDepInfo(departement, date)
-
     date = date.replace(" ", "")
+    originalDate = date
     date = date.replace("/", "-")
 
     splitDate = date.split("-")
 
-    if len(splitDate) != 3 or len(splitDate[0]) != 4 or len(splitDate[1]) != 2 or len(splitDate[2]) != 2:
+    if len(splitDate) != 3 or len(splitDate[0]) != 2 or len(splitDate[1]) != 2 or len(splitDate[2]) != 4:
         return [["message", ":x: Date invalide !"], ["react", "❌"]]
 
     try:
@@ -24,6 +23,10 @@ def depInfo(args : str):
         int(splitDate[2])
     except ValueError:
         return [["message", ":x: Date invalide !"], ["react", "❌"]]
+    else:
+        date = splitDate[2]+"-"+splitDate[1]+"-"+splitDate[0]
+
+    result = getDepInfo(departement, date)
 
     if result == False:
         return [["message", ":x: Le departement est invalide !"], ["react", "❌"]]
@@ -34,14 +37,14 @@ def depInfo(args : str):
     else:
         return [
             ["embed", [
-                result["Date"],
+                originalDate,
                 result["Departement"],
-                "Hospitalisés : "+result["Hospitalisés"]+"\nEn réanimation"+result["EnReanimation"]+"\nNouvelles hospitalisation(s) : "+result["NouvellesHospitalisations"]+"\nNouvelles reanimation(s) : "+result["NouvellesReanimations"]+"\nDécès total : "+result["Décès"]+"\nGueris total : "+result["Gueris"],
-                result["Source"]
+                "Hospitalisés : "+str(result["Hospitalisés"])+"\nEn réanimation : "+str(result["EnReanimation"])+"\nNouvelles hospitalisation(s) : "+str(result["NouvellesHospitalisations"])+"\nNouvelles reanimation(s) : "+str(result["NouvellesReanimations"])+"\nDécès total : "+str(result["Décès"])+"\nGueris total : "+str(result["Gueris"]),
+                "Source : "+result["Source"]
                 ]
             ],
             [
-                "react", "✔"
+                "react", "✅"
             ]
         ]
 
