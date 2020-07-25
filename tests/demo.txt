@@ -1,0 +1,42 @@
+Departement >976
+Date >2020-07-08
+{
+    "Departement": "Mayotte",
+    "Date": "2020-07-08",
+    "Hospitalisés": 13,
+    "EnReanimation": 2,
+    "NouvellesHospitalisations": 0,
+    "NouvellesReanimations": 0,
+    "Décès": 28,
+    "Gueris": 387,
+    "Source": "OpenCOVID19-fr"
+}
+Departement >Rhône
+Date >2020-07-08
+{
+    "Departement": "Rhône",
+    "Date": "2020-07-08",
+    "Hospitalisés": 150,
+    "EnReanimation": 15,
+    "NouvellesHospitalisations": 1,
+    "NouvellesReanimations": 1,
+    "Décès": 653,
+    "Gueris": 2972,
+    "Source": "Santé publique France Data"
+}
+Departement >Paris
+Date >2020-02-08
+Aucune information trouvé a cette date
+Departement >Paris
+Date >2020-05-04
+{
+    "Departement": "Paris",
+    "Date": "2020-05-04",
+    "Hospitalisés": 2155,
+    "EnReanimation": 420,
+    "NouvellesHospitalisations": 42,
+    "NouvellesReanimations": 42,
+    "Décès": 1517,
+    "Gueris": 4259,
+    "Source": "Santé publique France Data"
+}
