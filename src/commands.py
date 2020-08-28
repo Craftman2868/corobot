@@ -63,7 +63,7 @@ def sayFrInfo(args : str):
         toSay.append(x)
     toSay.append("hospitalises")
 
-    for x in sayNumber(result["reannimation"]):
+    for x in sayNumber(result["reanimation"]):
         toSay.append(x)
     toSay.append("en-reanimation")
 
@@ -145,8 +145,6 @@ def sayDepInfo(args : str):
     if not int(splitDate[2]) in [2019, 2020]:
         return [["say", ["invalid-date"]], ["react", "❌"]]
 
-    print(departement)
-
     result = getDepInfo(departement, date)
 
     if result == False:
@@ -159,8 +157,6 @@ def sayDepInfo(args : str):
     toSay = [
         "information-coronavirus"
     ]
-
-    print(result)
 
     for x in sayNumber(result["Hospitalisés"]):
         toSay.append(x)
@@ -190,7 +186,6 @@ def sayDepInfo(args : str):
     toSay.append("gueris")
     toSay.append("total")
 
-    print(toSay)
     return [
         [
             "say",

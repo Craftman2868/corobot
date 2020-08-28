@@ -25,7 +25,6 @@ def sayNumber(number : int):
         if number < 60:
             if number%10 == 0:
                 return [number]
-                print("ok")
             else:
                 chiffre = 0
                 while number%10 != 0:
@@ -110,21 +109,6 @@ def getFrInfo():
         originalData = json.loads(resp.read())["FranceGlobalLiveData"][0]
     except IndexError:
         return None
-
-    # data = {
-    #     "Nom": config["null"],
-    #     "Date": config["null"],
-    #     "Hospitalisés": config["null"],
-    #     "EnReanimation": config["null"],
-    #     "DécèsEhpad": config["null"],
-    #     "CasEhpad": config["null"],
-    #     "CasConfirmés": config["null"],
-    #     "CasConfirmésEhpad": config["null"],
-    #     "CasPossiblesEhpad": config["null"],
-    #     "Décès": config["null"],
-    #     "Gueris": config["null"],
-    #     "Source": config["null"]
-    # }
 
     data = {}
 
@@ -230,6 +214,10 @@ def getDepInfo(departement, date : str):
         }
     except KeyError:
         return True
+
+    for k in data:
+        if data[k] == None:
+            data[k] = "?"
 
     return data
 
